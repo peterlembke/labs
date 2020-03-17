@@ -14,69 +14,25 @@
 
  You should have received a copy of the GNU General Public License
  along with Labs/Svg.  If not, see <https://www.gnu.org/licenses/>.'
-
- * @constructor
  */
-function SvgHighlight() {
+
+/**
+ * Class that put a pin onto the SVG map
+ */
+function SvgPoint() {
 
     "use strict";
 
     /**
-     * Find all ids in an svg that has a fill color and/or a stroke color already set.
-     * The data can then be used in setRandomColors.
-     * @param $name
-     * @param $tagName
+     * Put a pin on the map
      * @returns {[]}
      */
-    this.findIds = function($name, $tagName)
+    this.setPin = function()
     {
         let $svg = getSvgObject($name);
-        let $elements = getElementsByTagName($svg, $tagName);
 
-        let $data = {};
-
-        for (let $key in $elements)
-        {
-            if ($elements.hasOwnProperty($key) === false) {
-                continue;
-            }
-
-            const $id = $elements[$key].id;
-            if ($id === '') {
-                continue;
-            }
-            const $title = $elements[$key].getAttribute('title');
-
-            $data[$id] = $title;
-        }
 
         return $data;
-    };
-
-    /**
-     * Set event listeners on all objects in the SVG.
-     * The ids in the data come from findIds()
-     * @param $name
-     * @param $data
-     * @param $tagName
-     */
-    this.setEventListeners = function($name, $data, $tagName)
-    {
-        let $svg = getSvgObject($name);
-
-        for (let $id in $data) {
-            if ($data.hasOwnProperty($id) === false) {
-                continue;
-            }
-
-            const $title = $data[$id];
-            const $element = getElementById($svg, $id);
-            $element.addEventListener('click', e => {
-                console.log('clicked id:' + $id + ', Län: ' + $title);
-                const $color = _RandomColor();
-                $element.style.fill = $color;
-            });
-        }
     };
 
     /**
@@ -84,20 +40,39 @@ function SvgHighlight() {
      * @param $name
      * @returns {Document}
      */
-    let getSvgObject = function($name) {
+    const calculatePinPoint = function($lat, $long) {
+
+        // Get the upper left lat/long from the svg
+        // and the lower right lat/long from the svg
+        // Get the viewPort width/height from the svg
+        // Calculate an x and y value and return them.
+
+    };
+
+    /**
+     * Get a reference to an object
+     * @param $name
+     * @returns {Document}
+     */
+    const getSvgObject = function($name) {
         const $svgObject = document.getElementById($name).contentDocument;
         return $svgObject;
     };
 
     /**
-     * Get all elements with a specific tag name from within an object
-     * @param $svgObject
-     * @param $tagName
-     * @returns {HTMLCollectionOf<SVGElementTagNameMap[*]> | HTMLCollectionOf<HTMLElementTagNameMap[*]> | HTMLCollectionOf<Element> | ActiveX.IXMLDOMNodeList}
+     * Set a pin here.
+     * @param $name
+     * @returns {Document}
      */
-    let getElementsByTagName = function ($svgObject, $tagName) {
-        const $elements = $svgObject.getElementsByTagName($tagName);
-        return $elements;
+    const setPin = function($x, $y) {
+    };
+
+    /**
+     * Remove pin here.
+     * @param $name
+     * @returns {Document}
+     */
+    const removePin = function($x, $y) {
     };
 
     /**
@@ -106,7 +81,7 @@ function SvgHighlight() {
      * @param $id
      * @returns {Element | HTMLElement}
      */
-    let getElementById = function ($object, $id) {
+    const getElementById = function ($object, $id) {
         const $element = $object.getElementById($id);
         return $element;
     };
@@ -131,31 +106,4 @@ function SvgHighlight() {
 
         return 'true';
     };
-
-    /**
-     * Construct a random color with 6 hex numbers.
-     * Example: #A0B321
-     * @returns {string}
-     * @private
-     */
-    const _RandomColor = function()
-    {
-        const $chars = '0123456789ABCDEF';
-        let $color = '';
-
-        for (let $position = 0; $position < 6; $position = $position +1) {
-            const $number = Math.floor(Math.random() * 16);
-            $color = $color + $chars[$number];
-        }
-
-        return '#' + $color;
-    };
-
-    this.highlight = function($svgName, $tagName)
-    {
-        let $data = this.findIds($svgName, $tagName);
-        let $that = this;
-        $that.setEventListeners($svgName, $data, $tagName);
-    };
-
 }

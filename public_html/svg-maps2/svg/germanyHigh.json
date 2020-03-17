@@ -1,0 +1,20 @@
+{
+    "publisher_name": "amCharts",
+    "publisher_url": "https://www.amcharts.com",
+    "publisher_note": "",
+    "publisher_video_url": "",
+    "collection_name": "amCharts",
+    "collection_url": "",
+    "collection_note": "",
+    "license_name": "Free with branding",
+    "license_url": "https://www.amcharts.com/javascript-maps/",
+    "license_note": "As all our libraries, Maps is available completely free. We’ll just ask you to show a small branding link in return.",
+    "author_name": "amCharts",
+    "author_url": "",
+    "author_note": "",
+    "icon_name": "Germany map",
+    "icon_url": "https://www.amcharts.com/svg-maps/?map=germany",
+    "icon_note": "",
+    "derivative_work": "Added viewBox height width to scale the map better",
+    "attribute": "{icon_name|icon_url} from {collection_name|collection_url} by {author_name|author_url} from {publisher_name|publisher_url}, License {license_name|license_url}"
+}

@@ -1,0 +1,43 @@
+<html>
+<body>
+
+<form id="myForm">
+    <select id="a" onclick="myFunction('b','cesar')">
+    </select>
+    <select id="b" onclick="myFunction('c','david')">
+    </select>
+    <select id="c" onclick="myFunction(' ')">
+    </select>
+</form>
+
+</body>
+</html>
+<script>
+    function myFunction($nextDropdown, $selectedValue) {
+        console.log('OnClick. next dropdown:' + $nextDropdown + ', selected value:' + $selectedValue );
+        if ($nextDropdown === '') {
+            return;
+        }
+
+        let $value = [
+            'adam', 'bertil','cesar','david','erik','fredrik','göran'
+        ];
+
+        let $box = document.getElementById($nextDropdown); // .selectedIndex = 0;
+        $box.options.length = 0;
+        for (let $i = 0; $i < $value.length; $i = $i + 1) {
+            let $option = document.createElement('option');
+            $option.text = $value[$i];
+            $option.value = $value[$i];
+            const $select = $selectedValue === $value[$i];
+            $option.selected = $select;
+            $box.add($option, null);
+        }
+    }
+
+    myFunction('a','bertil');
+    let $box = document.getElementById('a'); // .selectedIndex = 0;
+    $box.click();
+    $box = document.getElementById('b'); // .selectedIndex = 0;
+    $box.click();
+</script>

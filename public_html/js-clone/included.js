@@ -137,6 +137,8 @@ let $array1 = [
 
 $object1['foobar'] = 'Foobar';
 
+$newObject = new Object($object1);
+
 let $copy1 = _MiniClone($object1);
 console.log('Data', $copy1);
 let $copy2 = _MicroClone($object1);
@@ -148,3 +150,4 @@ console.log('Data', $copy3);
 let $copy4 = _MicroClone($array1);
 console.log('Data', $copy4);
 _Compare($copy3, $copy4)
+

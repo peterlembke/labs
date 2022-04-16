@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <style>
+        #div1, #div2, #div3, #div4 {
+            width: 350px;
+            height: 70px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+    </style>
+    <script>
+
+        let $id = '';
+
+        function allowDrop(ev, that) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            const $draggedId = ev.target.id;
+            ev.dataTransfer.setData("text", $draggedId);
+            $id = $draggedId;
+        }
+
+        function dragEnter(ev) {
+            ev.target.style.border = "3px dotted red";
+            const $targetId = ev.target.id;
+            if ($targetId !== $id) {
+                const $a=1;
+            }
+        }
+
+        function dragLeave(ev) {
+            ev.target.style.border = "";
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const $draggedId = ev.dataTransfer.getData("text");
+            if ($draggedId === '') {
+                return;
+            }
+            let $draggedElement = document.getElementById($draggedId);
+            if (!$draggedElement) {
+                return;
+            }
+            let $droppedOnElement = ev.target;
+            if (!$droppedOnElement) {
+                return;
+            }
+            // $droppedOnElement.appendChild($draggedElement);
+            $droppedOnElement.parentNode.insertBefore($draggedElement, $droppedOnElement);
+            $droppedOnElement.style.border = "";
+        }
+    </script>
+</head>
+<body>
+
+<p>Move around the boxes with touch or mouse</p>
+
+<div id="div1" draggable="true" ondragstart="drag(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 1</div>
+<div id="div2" draggable="true" ondragstart="drag(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 2</div>
+<div id="div3" draggable="true" ondragstart="drag(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 3</div>
+<div id="div4" draggable="true" ondragstart="drag(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 4</div>
+
+</body>
+</html>

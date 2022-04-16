@@ -75,6 +75,7 @@
             drop(ev);
             let $draggedElement = document.getElementById($draggedId);
             $draggedElement.remove();
+            listItemCount(ev.target);
         }
 
         function dragEnterDelete(ev) {
@@ -105,6 +106,18 @@
             $newElement.className = 'list_item';
             $listElement.appendChild($newElement);
             $listElement.setAttribute('maxId', $newCount.toString());
+
+            listItemCount(that);
+        }
+
+        function listItemCount(that) {
+            const $parentElementId = that.parentElement.id;
+            const $listId = $parentElementId + '_list';
+            let $listElement = document.getElementById($listId);
+            const $length = $listElement.children.length;
+            const $countElementId = $parentElementId + '_count';
+            let $countElement = document.getElementById($countElementId);
+            $countElement.innerText = $length.toString();
         }
 
     </script>
@@ -121,7 +134,7 @@
         <div id="my_list_div3" class="list_item" draggable="true" ondragstart="dragStart(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 3</div>
         <div id="my_list_div4" class="list_item" draggable="true" ondragstart="dragStart(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 4</div>
     </div>
-    <button id="my_list_add" onclick="add(this)">Add</button>
+    <button id="my_list_add" onclick="add(this)">Add</button> Item count: <span id="my_list_count">4</span>
     <div id="my_list_template" class="list_item_template" draggable="true" ondragstart="dragStart(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Template</div>
 </span>
 

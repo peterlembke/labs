@@ -2,11 +2,21 @@
 <html>
 <head>
     <style>
-        #div1, #div2, #div3, #div4 {
+        .list_item {
             width: 350px;
             height: 70px;
             padding: 10px;
             border: 1px solid #aaaaaa;
+        }
+        .list_item_template {
+            display: none;
+        }
+        .list_item_delete {
+            width: 350px;
+            height: 35px;
+            padding: 10px;
+            border: 1px solid #ff0000;
+            background-color: red;
         }
     </style>
     <script>
@@ -60,16 +70,60 @@
             ev.preventDefault();
             ev.target.style.border = "";
         }
+
+        function dropDelete(ev) {
+            drop(ev);
+            let $draggedElement = document.getElementById($draggedId);
+            $draggedElement.remove();
+        }
+
+        function dragEnterDelete(ev) {
+            ev.preventDefault();
+
+            const $enteredElement = ev.target;
+            $enteredElement.style.border = "3px dotted blue";
+        }
+
+        function dragLeaveDelete(ev) {
+            ev.target.style.border = "";
+        }
+
+        function add(that) {
+            const $parentElementId = that.parentElement.id;
+            const $listId = $parentElementId + '_list';
+            let $listElement = document.getElementById($listId);
+            const $templateId = $parentElementId + '_template';
+            let $newElement = document.getElementById($templateId).cloneNode(true); // "deep" clone
+
+            const $newCount = parseInt($listElement.getAttribute('maxId')) + 1;
+
+            const $newId = $parentElementId + '_div' + $newCount;
+            $newElement.id = $newId;
+
+            const $newName = 'Div ' + $newCount;
+            $newElement.innerHTML = $newName;
+            $newElement.className = 'list_item';
+            $listElement.appendChild($newElement);
+            $listElement.setAttribute('maxId', $newCount.toString());
+        }
+
     </script>
 </head>
 <body>
 
 <p>Move around the boxes with touch or mouse</p>
 
-<div id="div1" draggable="true" ondragstart="dragStart(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 1</div>
-<div id="div2" draggable="true" ondragstart="dragStart(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 2</div>
-<div id="div3" draggable="true" ondragstart="dragStart(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 3</div>
-<div id="div4" draggable="true" ondragstart="dragStart(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 4</div>
+<span id="my_list">
+    <div id="my_list_delete" class="list_item_delete" ondragover="allowDrop(event)" ondragenter="dragEnterDelete(event)" ondragover="allowDrop(event)" ondragleave="dragLeaveDelete(event)" ondrop="dropDelete(event)">Delete</div>
+    <div id="my_list_list" maxId="4">
+        <div id="my_list_div1" class="list_item" draggable="true" ondragstart="dragStart(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 1</div>
+        <div id="my_list_div2" class="list_item" draggable="true" ondragstart="dragStart(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 2</div>
+        <div id="my_list_div3" class="list_item" draggable="true" ondragstart="dragStart(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 3</div>
+        <div id="my_list_div4" class="list_item" draggable="true" ondragstart="dragStart(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Div 4</div>
+    </div>
+    <button id="my_list_add" onclick="add(this)">Add</button>
+    <div id="my_list_template" class="list_item_template" draggable="true" ondragstart="dragStart(event)" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">Template</div>
+</span>
 
 </body>
 </html>

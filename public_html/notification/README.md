@@ -45,7 +45,9 @@ The Notification API require an HTTPS address. The browser need to trust the dom
 Use the [ROX](https://github.com/peterlembke/rox) local development environment to get HTTPS on your URLs.
 Follow the instructions [here](https://github.com/peterlembke/rox/blob/main/images/web/certificates/README.md) to get it working with notifications in different browsers.
 
-## Example #1 - How it looks like
+## Demo #1 - How it looks like
+
+Minimum demo.
 
 In the Safari browser
 
@@ -63,14 +65,20 @@ In the FireFox browser
 
 ![macOS FireFox](macOS-FireFox-Notification-Example.png)
 
-## Example #2 - Better permission handling
+## Demo #2 - Better permission handling
 
-In this version I want to:
-Enable the "Get notification" button if we have permission to send a notification.
-Disable the "Ask for permission" button if we have permission to send a notification.
-I want this check to be done in a function that enable/disable the button,
-and show a text on screen what rights we have.
+In this version you get:
 
-Asking for permission should be in a function.
-
+Button: "Ask for permission" is enabled if you need to give permission.
+Button: "Get notification" is enabled if you have given permission.
 Add links to the GitHub documentation
+Status field update when you show/click/close the notification.
+
+## Demo #3 - More advanced
+
+In this version you get:
+
+* Button to delete an existing notification
+* Tag to overwrite an existing notification
+* Time in the notification, so you see that it gets updated
+* Instructions and links

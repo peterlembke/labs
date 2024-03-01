@@ -18,8 +18,7 @@
 
     <button onclick="new Notification('Hello', {body: 'I am a notification'})">Get notification</button>
 
-    <p><a href="index.php">Demo #1</a></p>
-    <p><a href="index2.php">Demo #2</a></p>
+    <div><?php include "menu.php"; ?></div>
 
 </body>
 </html>

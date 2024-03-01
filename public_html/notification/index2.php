@@ -77,7 +77,7 @@
 <body>
     <h1>Notification API demo #2</h1>
 
-    <p>Follow the instructions <a href="https://github.com/peterlembke/rox/blob/main/images/web/certificates/Documentation/macos-allow-notifications.md">here</a> to get it working with notifications in different browsers.</p>
+    <p>Follow the instructions <a href="https://github.com/peterlembke/rox/blob/main/images/web/certificates/Documentation/macos-allow-notifications.md" target="_blank" rel="noopener noreferrer">here</a> to get it working with notifications in different browsers.</p>
 
     <p>Press the button to be asked if you allow notifications</p>
     <button id="requestPermission" onclick="requestPermission()">
@@ -97,7 +97,10 @@
 
     <p>The notification status changes on this web page when you view/click/close the notification.</p>
 
-    <p>The source code is here <a href="https://github.com/peterlembke/labs/tree/master/public_html/notification">GitHub</a></p>
+    <p>The source code is here <a href="https://github.com/peterlembke/labs/tree/master/public_html/notification" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+
+    <p><a href="index.php">Demo #1</a></p>
+    <p><a href="index2.php">Demo #2</a></p>
 
 </body>
 </html>

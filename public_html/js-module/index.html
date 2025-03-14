@@ -1,0 +1,33 @@
+<html lang="sv">
+<body>
+    <!-- http://localhost/js-module/ -->
+    <div id="my_row">Here will the full row show</div>
+    <div id="my_row2">Here will the next full row show</div>
+    <div id="my_row3">Here will the third full row show</div>
+    <div id="my_row4">Here will the 4th full row show</div>
+    <script src="./MyBase.js"></script>
+    <script src="./MyClass.js"></script>
+    <script>
+        let $box = document.getElementById('my_row');
+        let myClass = new MyClass('Peter', 53, 'Stockholm');
+        let $row = myClass.getCurrentTime() + " - " + myClass.getRow() + ' from ' + myClass.optionalText;
+        $box.innerHTML = $row;
+    </script>
+    <script type="module">
+        import { message, getCurrentTime } from './MyModule.js'; // message and getCurrentTime are imported only here
+        let $box2 = document.getElementById('my_row2');
+        $box2.innerHTML = myClass.getCurrentTime() + ' - ' + message() + ' - ' + getCurrentTime();
+    </script>
+    <script type="module">
+        import MyCarModelModule from './MyCarModelModule.js';
+        var myCarModel = new MyCarModelModule('Volvo', 'Electric');
+        let $box3 = document.getElementById('my_row3');
+        $box3.innerHTML = myCarModel.getInformation();
+    </script>
+    <script>
+        <!-- The variable myCarModel only exist in the above module -->
+        let $box4 = document.getElementById('my_row4');
+        $box4.innerHTML = myCarModel.getInformation();
+    </script>
+</body>
+</html>
